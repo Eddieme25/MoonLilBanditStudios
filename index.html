@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moon Lil Bandit</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <!-- Header / Navbar (Se mantiene idéntico en todas tus subpáginas) -->
+    <header class="header">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="imagenes/logotipo.png" alt="Moon Lil Bandit Logotipo" class="logotipo">
+            </a>
+        </div>
+        
+        <div class="right-nav">
+            <nav class="nav-menu">
+                <a href="#">Collection</a>
+                <a href="#">Art</a>
+                <a href="#">Studio</a>
+                <!-- Menú desplegable Lil Bandits -->
+                <div class="dropdown">
+                    <a href="#" class="dropdown-trigger">Lil Bandits ▾</a>
+                    <div class="dropdown-content">
+                        <a href="#">Mapache 1</a>
+                        <a href="#">Mapache 2</a>
+                        <a href="#">Mapache 3</a>
+                    </div>
+                </div>
+            </nav>
+            <a href="#" class="btn-primary btn-hover">Iniciar Aventura</a>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="main-content">
+        <!-- Recuadro Multimedia 16:9 Fusionado -->
+        <div class="media-container" id="mediaContainer">
+            <video id="videoEntrada" autoplay muted playsinline>
+                <source src="videos/entrada.mp4" type="video/mp4">
+                Tu navegador no soporta la reproducción de video.
+            </video>
+            <img id="imagenEntrada" src="imagenes/entrada.png" alt="Entrada finalizada" class="hidden">
+        </div>
+
+        <!-- Frase descriptiva -->
+        <blockquote class="frase">
+            "El arte de hacer cobrar vida a lo imposible."
+        </blockquote>
+
+        <!-- Botones inferiores -->
+        <div class="buttons-container">
+            <a href="#" class="btn-outline btn-hover">Nuestros Trabajos</a>
+            <a href="#" class="btn-dark btn-hover">Iniciar un Proyecto</a>
+        </div>
+    </main>
+
+    <!-- Script para cambiar video por imagen al finalizar -->
+    <script>
+        const video = document.getElementById('videoEntrada');
+        const imagen = document.getElementById('imagenEntrada');
+
+        video.addEventListener('ended', () => {
+            video.classList.add('hidden');
+            imagen.classList.remove('hidden');
+        });
+    </script>
+
+</body>
+</html>
