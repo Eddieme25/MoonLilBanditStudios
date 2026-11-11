@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moon Lil Bandit</title>
+    <title>Moon Lil Bandit — Studio</title>
     <link rel="stylesheet" href="estilos.css">
 </head>
 <body>
 
-    <!-- Header / Navbar (Se mantiene idéntico en todas tus subpáginas) -->
+    <!-- Header / Navbar de Gama Alta -->
     <header class="header">
         <div class="logo-container">
             <a href="index.html" class="logo-link">
@@ -16,14 +16,20 @@
             </a>
         </div>
         
-        <div class="right-nav">
+        <!-- Botón Hamburguesa Estilizado -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Menú de navegación">
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
+        <div class="right-nav" id="rightNav">
             <nav class="nav-menu">
                 <a href="#">Collection</a>
                 <a href="#">Art</a>
                 <a href="#">Studio</a>
                 <!-- Menú desplegable Lil Bandits -->
-                <div class="dropdown">
-                    <a href="#" class="dropdown-trigger">Lil Bandits ▾</a>
+                <div class="dropdown" id="dropdownMenu">
+                    <a href="#" class="dropdown-trigger">Lil Bandits <span class="arrow">▾</span></a>
                     <div class="dropdown-content">
                         <a href="#">Mapache 1</a>
                         <a href="#">Mapache 2</a>
@@ -37,7 +43,7 @@
 
     <!-- Contenido Principal -->
     <main class="main-content">
-        <!-- Recuadro Multimedia 16:9 Fusionado -->
+        <!-- Recuadro Multimedia 16:9 Fusionado y sin bordes -->
         <div class="media-container" id="mediaContainer">
             <video id="videoEntrada" autoplay muted playsinline>
                 <source src="videos/entrada.mp4" type="video/mp4">
@@ -51,21 +57,51 @@
             "El arte de hacer cobrar vida a lo imposible."
         </blockquote>
 
-        <!-- Botones inferiores -->
+        <!-- Botones inferiores compactos y estilizados -->
         <div class="buttons-container">
             <a href="#" class="btn-outline btn-hover">Nuestros Trabajos</a>
             <a href="#" class="btn-dark btn-hover">Iniciar un Proyecto</a>
         </div>
     </main>
 
-    <!-- Script para cambiar video por imagen al finalizar -->
+    <!-- Scripts de Control -->
     <script>
+        // Transición de video a imagen al finalizar
         const video = document.getElementById('videoEntrada');
         const imagen = document.getElementById('imagenEntrada');
 
         video.addEventListener('ended', () => {
             video.classList.add('hidden');
             imagen.classList.remove('hidden');
+        });
+
+        // Toggle del menú hamburguesa centrado
+        const menuToggle = document.getElementById('menuToggle');
+        const rightNav = document.getElementById('rightNav');
+
+        menuToggle.addEventListener('click', () => {
+            rightNav.classList.toggle('active');
+            menuToggle.classList.toggle('open');
+            document.body.classList.toggle('no-scroll');
+        });
+
+        // Cerrar menú al hacer clic en un enlace de navegación
+        const navLinks = document.querySelectorAll('.nav-menu a:not(.dropdown-trigger)');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                rightNav.classList.remove('active');
+                menuToggle.classList.remove('open');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+
+        // Soporte interactivo para dropdown en táctil
+        const dropdown = document.getElementById('dropdownMenu');
+        dropdown.addEventListener('click', (e) => {
+            if (window.innerWidth <= 900) {
+                e.preventDefault();
+                dropdown.classList.toggle('active-mobile');
+            }
         });
     </script>
 
